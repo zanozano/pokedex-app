@@ -1,0 +1,67 @@
+//! This file is using BEM as a methodology to create hierarchy and organization of the styles
+@use "reset";
+@use "scroll-style";
+
+:root {
+    --background-primary: #313131;
+    --background-secondary: #fff;
+    --background-tertiary: #ee6b2f;
+    --background-quaternary: #4dad5b;
+    --font-primary: #919191;
+    --font-secondary: #fff;
+    --normal-color: #a8a77a;
+    --fighting-color: #c22e28;
+    --flying-color: #a98ff3;
+    --poison-color: #a33ea1;
+    --ground-color: #e2bf65;
+    --rock-color: #b6a136;
+    --bug-color: #a6b91a;
+    --ghost-color: #735797;
+    --steel-color: #b7b7ce;
+    --fire-color: #ee8130;
+    --water-color: #6390f0;
+    --grass-color: #7ac74c;
+    --electric-color: #f7d02c;
+    --psychic-color: #f95587;
+    --ice-color: #96d9d6;
+    --dragon-color: #6f35fc;
+    --dark-color: #705746;
+    --fairy-color: #d685ad;
+    --unknown-color: #68a090;
+    --shadow-color: #5f6169;
+}
+
+body {
+    color: var(--font-primary);
+    font-family: "Flexo-Regular", arial, sans-serif;
+    padding-right: 0 !important;
+}
+
+.section {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    &__card {
+        width: 120px;
+        aspect-ratio: 1 / 1;
+        padding: 0.8rem;
+        border-radius: 10px;
+        background: #e0e0e0;
+        box-shadow:
+            8px 8px 15px #bebebe,
+            -8px -8px 15px #ffffff;
+    }
+    &__block {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+    }
+    &__img {
+        width: 80px;
+    }
+    &__p {
+        margin: 0;
+    }
+}

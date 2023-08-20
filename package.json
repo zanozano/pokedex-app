@@ -1,6 +1,37 @@
 {
   "dependencies": {
     "axios": "^0.23.0",
+    "node-sass": "^9.0.0",
     "nodemon": "^2.0.14"
+  },
+  "name": "pokedex-api-server",
+  "version": "2.0.0",
+  "description": "This project is a Pokédex API built using Node.js, allowing you to retrieve information about various Pokémon species. It interacts with a Pokémon API to fetch data and provides a simple and convenient way to access details about different Pokémon.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "scss": "sass --watch public/assets/scss/style.scss:public/assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zanozano/pokedex.git"
+  },
+  "keywords": [
+    "pokedex",
+    "pokemon",
+    "api",
+    "server",
+    "node",
+    "next.js"
+  ],
+  "author": "Cristobal Manzano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zanozano/pokedex/issues"
+  },
+  "homepage": "https://github.com/zanozano/pokedex#readme",
+  "devDependencies": {
+    "sass": "^1.66.1"
   }
 }
