@@ -2,8 +2,8 @@ const axios = require('axios');
 
 let pokemonList = [];
 
-async function getAllPokemon() {
-    const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=200');
+async function getAllPokemon(offset, limit) {
+    const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
     return data.results;
 }
 
@@ -14,21 +14,30 @@ async function getPokemon(name) {
 
 async function buildPokemonList() {
     try {
-        const results = await getAllPokemon();
-        const promises = results.map(async (pokemon) => {
-            const { name } = pokemon;
-            return await getPokemon(name);
-        });
-        const data = await Promise.all(promises);
+        const totalPokemons = 1200;
+        const pokemonsPerRequest = 200;
+        const requestsNeeded = Math.ceil(totalPokemons / pokemonsPerRequest);
 
-        data.forEach((pokemon) => {
-            const { name, sprites } = pokemon;
-            const sprite = sprites.front_default;
-            pokemonList.push({
-                name,
-                image: sprite,
+        for (let i = 0; i < requestsNeeded; i++) {
+            const offset = i * pokemonsPerRequest;
+            const results = await getAllPokemon(offset, pokemonsPerRequest);
+
+            const promises = results.map(async (pokemon) => {
+                const { name } = pokemon;
+                return await getPokemon(name);
             });
-        });
+
+            const data = await Promise.all(promises);
+
+            data.forEach((pokemon) => {
+                const { name, sprites } = pokemon;
+                const sprite = sprites.front_default;
+                pokemonList.push({
+                    name,
+                    image: sprite,
+                });
+            });
+        }
     } catch (err) {
         console.error('Error:', err.message);
         console.error('Original Error:', err);
@@ -39,11 +48,11 @@ async function buildPokemonList() {
 (async () => {
     try {
         await buildPokemonList();
+        console.log('Pokemon list built successfully');
     } catch (error) {
         console.error('Error en el proceso principal:', error);
     }
 })();
-
 
 module.exports = {
     pokemonList,

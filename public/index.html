@@ -14,12 +14,24 @@
 	<title>Pokémon API Fun</title>
 </head>
 
-<body class="text-center p-5">
-	<div class="container">
+<body>
+	<header class="header">
 		<h1>Galería de pokemones</h1>
+
+		<form id="form">
+			<label for="filter">Type</label>
+			<input class="form-control" type="text" id="filter" name="filter">
+			<button class="btn btn-primary" type="submit">Filtrar</button>
+		</form>
+	</header>
+	<div class="container my-5">
 		<div id="pokemon" class="section">
 			<div class="spinner-border m-auto text-info" id="spinner" role="status"></div>
 		</div>
+		<nav class="mt-5" aria-label="Page navigation example">
+			<ul class="pagination" id="pagination">
+			</ul>
+		</nav>
 	</div>
 
 	<script src="./assets//js/renderPokemon.js"></script>
