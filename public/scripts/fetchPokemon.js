@@ -14,7 +14,7 @@ async function getPokemon(name) {
 
 async function buildPokemonList() {
     try {
-        const totalPokemons = 1200;
+        const totalPokemons = 1300;
         const pokemonsPerRequest = 200;
         const requestsNeeded = Math.ceil(totalPokemons / pokemonsPerRequest);
 
@@ -30,13 +30,16 @@ async function buildPokemonList() {
             const data = await Promise.all(promises);
 
             data.forEach((pokemon) => {
-                const { name, sprites } = pokemon;
-                const sprite = sprites.front_default;
+                const { name, sprites, types } = pokemon;
+                const sprite = sprites.other['official-artwork'].front_default;
+                const typesList = types.map(type => type.type.name);
                 pokemonList.push({
                     name,
                     image: sprite,
+                    types: typesList,
                 });
             });
+
         }
     } catch (err) {
         console.error('Error:', err.message);

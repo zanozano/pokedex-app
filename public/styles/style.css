@@ -221,7 +221,14 @@ body {
 
 .header {
   background-color: #313131;
-  padding: 2rem;
+  padding: 3rem;
+}
+.header__form {
+  display: flex;
+  gap: 1rem;
+}
+.header__input {
+  width: 20%;
 }
 
 .section {
