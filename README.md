@@ -1,6 +1,6 @@
 # Pokémon API Game
 
-![Pokémon Logo](images/favicon.svg)
+![Pokémon Logo](./public/images/favicon.svg)
 
 ## Description
 
