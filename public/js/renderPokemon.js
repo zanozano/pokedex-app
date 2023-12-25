@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+
   function displaySelectedPokemonInfo(pokemon) {
 
     function decimetersToCentimeters(decimeters) {
@@ -147,15 +148,56 @@ document.addEventListener('DOMContentLoaded', () => {
       return parseFloat(kilograms.toFixed(2));
     }
 
+    function formatPokemonName(name) {
+      const replacedName = name.replace(/[-,]/g, ' ');
+      const words = replacedName.split(' ');
+      const formattedName = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      return formattedName;
+    }
+
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
     <h4 class="modal-body__title">#${pokemon.number} ${capitalizeFirstLetter(pokemon.name)}</h4>
     <img class="modal-body__img" src="${pokemon.image}" alt="${pokemon.name} image">
     <div class="modal-body__info">
       <h5>${decimetersToCentimeters(pokemon.height)} cm</h5>
+      /
       <h5>${hectogramsToKilograms(pokemon.weight)} Kg</h5>
     </div>
     <div class="section__type-container">${createTypeChips(pokemon.types)}</div>
+      <table class="table table-bordered m-0">
+        <thead class="thead-dark">
+          <tr>
+            <th colspan="2" class="table-active text-center">Stats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${formatPokemonName(pokemon.stats[0].stat.name)}</td>
+            <td>${pokemon.stats[0].base_stat}</td>
+          </tr>
+          <tr>
+            <td>${formatPokemonName(pokemon.stats[1].stat.name)}</td>
+            <td>${pokemon.stats[1].base_stat}</td>
+          </tr>
+          <tr>
+            <td>${formatPokemonName(pokemon.stats[2].stat.name)}</td>
+            <td>${pokemon.stats[2].base_stat}</td>
+          </tr>
+          <tr>
+            <td>${formatPokemonName(pokemon.stats[3].stat.name)}</td>
+            <td>${pokemon.stats[3].base_stat}</td>
+          </tr>
+          <tr>
+            <td>${formatPokemonName(pokemon.stats[4].stat.name)}</td>
+            <td>${pokemon.stats[4].base_stat}</td>
+          </tr>
+          <tr>
+            <td>${formatPokemonName(pokemon.stats[5].stat.name)}</td>
+            <td>${pokemon.stats[5].base_stat}</td>
+          </tr>
+        </tbody>
+      </table>
   `;
   }
 

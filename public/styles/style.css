@@ -361,9 +361,11 @@ body {
 }
 .modal-body__title {
   font-size: 1.4rem;
+  margin: 0;
 }
 .modal-body__info {
   display: flex;
+  font-size: 1.1rem;
   justify-content: center;
   gap: 1rem;
 }
