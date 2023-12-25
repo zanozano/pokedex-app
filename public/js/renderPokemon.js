@@ -94,17 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
     paginationContainer.appendChild(nextPageLink);
   }
 
-  fetch('http://localhost:3000/pokemones')
+  fetch('http://localhost:3000/pokemon')
     .then((res) => res.json())
     .then((pokemons) => {
-      filteredPokemons = pokemons; // Almacenar los Pokémon sin filtrar
+      filteredPokemons = pokemons;
       showPokemonList(pokemons, currentPage);
 
       InputFilter.addEventListener('input', () => {
         const filter = InputFilter.value;
         const filteredPokemons = pokemonFilter(pokemons, filter);
-        showPokemonList(filteredPokemons, 1); // Mostrar resultados desde la primera página
-        currentPage = 1; // Reiniciar la página actual
+        showPokemonList(filteredPokemons, 1);
+        currentPage = 1;
       });
     });
 });

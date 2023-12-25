@@ -8,33 +8,38 @@
 		content="Clash with iconic Pokémon via our API-powered backend for separate responses. Unleash the gaming fun! Catch 'em all with ease. Gotta code 'em fast!">
 	<meta name="keywords" content="Pokémon, gaming, API, backend, responses, catch 'em all, coding">
 	<meta name="author" content="Cristóbal Manzano">
+	<link rel="icon" href="images/favicon.svg" type="images/favicon.svg">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-	<link rel="stylesheet" href="./assets/css/style.css" />
-	<title>Pokémon API Fun</title>
+	<link rel="stylesheet" href="styles/style.css" />
+	<title>Pokémon API Game</title>
 </head>
 
 <body>
 	<header class="header">
-		<h1>Galería de pokemones</h1>
+		<h2 class="header__h2">Galería de pokemones</h2>
 
-		<form id="form">
-			<label for="filter">Type</label>
-			<input class="form-control" type="text" id="filter" name="filter">
-			<button class="btn btn-primary" type="submit">Filtrar</button>
+		<form id="form" class="header__form">
+			<label class="header__label" for="filter">Type</label>
+			<div class="header__container-input">
+				<input class="form-control header__input" type="text" id="filter" name="filter">
+				<button class="btn btn-primary" type="submit">Filtrar</button>
+			</div>
 		</form>
 	</header>
+
 	<div class="container my-5">
 		<div id="pokemon" class="section">
 			<div class="spinner-border m-auto text-info" id="spinner" role="status"></div>
 		</div>
+		<!-- pagination -->
 		<nav class="mt-5" aria-label="Page navigation example">
 			<ul class="pagination" id="pagination">
 			</ul>
 		</nav>
 	</div>
 
-	<script src="./assets//js/renderPokemon.js"></script>
+	<script src="js/renderPokemon.js"></script>
 </body>
 
 </html>
