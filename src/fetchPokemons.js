@@ -37,7 +37,7 @@ async function buildPokemonList() {
             }
 
             data.forEach((pokemon) => {
-                const { name, sprites, types } = pokemon;
+                const { name, sprites, types, weight, height, stats, id } = pokemon;
                 const sprite = sprites.other.showdown.front_default;
 
                 if (sprite) {
@@ -46,6 +46,10 @@ async function buildPokemonList() {
                         name: formatPokemonName(name),
                         image: sprite,
                         types: typesList,
+                        weight,
+                        height,
+                        stats,
+                        number: id
                     });
                 } else {
                     console.log(`La imagen no está disponible para el Pokémon: ${name}`);

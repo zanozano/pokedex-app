@@ -97,6 +97,7 @@ body {
     &__card {
         aspect-ratio: 1 / 1;
         align-items: center;
+        cursor: pointer;
         background: #e0e0e0;
         border-radius: 0.4rem;
         display: flex;
@@ -179,6 +180,36 @@ body {
 
     &__p {
         text-align: center;
+    }
+}
+
+
+.modal-content {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.modal-body {
+    padding: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+
+    &__title {
+        font-size: 1.4rem;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    &__img {
+        width: 100px;
     }
 }
 

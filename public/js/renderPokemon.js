@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const typeArray = types.split(', ');
       return typeArray.map(type => `<div class="chip ${type.toLowerCase()}">${capitalizeFirstLetter(type)}</div>`).join('');
     }
-
     return '';
   }
 
@@ -39,18 +38,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const endIndex = startIndex + pokemonsPerPage;
     const pokemonsToShow = pokemons.slice(startIndex, endIndex);
 
-    pokemonsToShow.forEach(pokemon => {
-      div.innerHTML += `
-        <div class="section__card">
-          <div class="section__block">
-            <img class="section__img" src="${pokemon.image}" >
-            <p class="section__p">${capitalizeFirstLetter(pokemon.name)}</p>
-            <div class="section__type-container">
-             ${createTypeChips(pokemon.types)}
-            </div>
+    function handleClick(pokemon) {
+      console.log(pokemon)
+      displaySelectedPokemonInfo(pokemon);
+    }
+
+    pokemonsToShow.forEach((pokemon, index) => {
+      const pokemonCard = document.createElement('div');
+      pokemonCard.classList.add('section__card');
+      pokemonCard.dataset.toggle = 'modal';
+      pokemonCard.dataset.target = '#modalSelected';
+      pokemonCard.addEventListener('click', () => handleClick(pokemon));
+
+      pokemonCard.innerHTML = `
+        <div class="section__block">
+          <img class="section__img" src="${pokemon.image}" >
+          <p class="section__p">${capitalizeFirstLetter(pokemon.name)}</p>
+          <div class="section__type-container">
+            ${createTypeChips(pokemon.types)}
           </div>
         </div>
       `;
+
+      div.appendChild(pokemonCard);
     });
 
     generatePagination(Math.ceil(pokemons.length / pokemonsPerPage), currentPage);
@@ -124,4 +134,29 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPage = 1;
       });
     });
+
+  function displaySelectedPokemonInfo(pokemon) {
+
+    function decimetersToCentimeters(decimeters) {
+      const centimeters = decimeters * 10;
+      return parseFloat(centimeters.toFixed(2));
+    }
+
+    function hectogramsToKilograms(hectograms) {
+      const kilograms = hectograms * 0.1;
+      return parseFloat(kilograms.toFixed(2));
+    }
+
+    const modalBody = document.getElementById('modalBody');
+    modalBody.innerHTML = `
+    <h4 class="modal-body__title">#${pokemon.number} ${capitalizeFirstLetter(pokemon.name)}</h4>
+    <img class="modal-body__img" src="${pokemon.image}" alt="${pokemon.name} image">
+    <div class="modal-body__info">
+      <h5>${decimetersToCentimeters(pokemon.height)} cm</h5>
+      <h5>${hectogramsToKilograms(pokemon.weight)} Kg</h5>
+    </div>
+    <div class="section__type-container">${createTypeChips(pokemon.types)}</div>
+  `;
+  }
+
 });
