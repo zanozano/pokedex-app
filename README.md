@@ -1,4 +1,4 @@
-# Pokémon API Game
+# Pokédex App
 
 ![Pokémon Logo](./public/images/favicon.svg)
 
@@ -14,7 +14,7 @@ Welcome to the Pokémon API Game, a project built using Node.js that serves as a
 
 ## Table of Contents
 
-- [Pokémon API Game](#pokémon-api-game)
+- [Pokédex App](#pokédex-app)
   - [Description](#description)
   - [Key Features and Technologies](#key-features-and-technologies)
   - [Table of Contents](#table-of-contents)
