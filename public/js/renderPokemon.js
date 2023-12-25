@@ -17,6 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
+  function createTypeChips(types) {
+    if (Array.isArray(types)) {
+      return types.map(type => `<div class="chip ${type.toLowerCase()}">${capitalizeFirstLetter(type)}</div>`).join('');
+    }
+
+    if (typeof types === 'string') {
+      const typeArray = types.split(', ');
+      return typeArray.map(type => `<div class="chip ${type.toLowerCase()}">${capitalizeFirstLetter(type)}</div>`).join('');
+    }
+
+    return '';
+  }
+
+
   function showPokemonList(pokemons, page) {
     spinner.style.display = 'none';
     div.innerHTML = '';
@@ -31,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="section__block">
             <img class="section__img" src="${pokemon.image}" >
             <p class="section__p">${capitalizeFirstLetter(pokemon.name)}</p>
+            <div class="section__type-container">
+             ${createTypeChips(pokemon.types)}
+            </div>
           </div>
         </div>
       `;

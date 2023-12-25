@@ -38,27 +38,36 @@ body {
 }
 
 .header {
-    background-color: #313131;
-    padding: 3rem 4%;
+    align-items: center;
+    background-color: #263238;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    z-index: 100;
 
     &__h2 {
+        background-color: #EF5350;
+        color: #ffffff;
         font-size: 1.8rem;
         font-weight: 600;
+        margin: 0;
+        padding: 1rem 0;
+        text-align: center;
+        width: 100%;
     }
 
     &__form {
         display: flex;
-        gap: 0.6rem;
         flex-direction: column;
+        gap: 0.4rem;
+        max-width: 260px;
+        margin: 1.2rem 0;
     }
 
     &__container-input {
         display: flex;
-        gap: 1rem;
-
+        flex-direction: column;
+        gap: 0.8rem;
+        max-width: 260px;
     }
 
     &__label {
@@ -66,40 +75,215 @@ body {
     }
 
     &__input {
-        width: 20%;
+        max-width: 260px;
     }
+}
+
+.main-container {
+    margin: 2rem 4%;
+    display: flex;
+    flex-direction: column;
+    min-height: 58vh;
+
+    justify-content: center;
 }
 
 .section {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: space-between;
 
     &__card {
         aspect-ratio: 1 / 1;
+        align-items: center;
         background: #e0e0e0;
-        border-radius: 10px;
+        border-radius: 0.4rem;
+        display: flex;
+        justify-content: center;
         padding: 0.8rem;
-        width: 160px;
+        width: 100%;
         box-shadow:
-            8px 8px 15px #bebebe,
-            -8px -8px 15px #ffffff;
+            8px 8px 25px #bebebe,
+            -8px -8px 25px #ffffff;
+    }
+
+    @media only screen and (min-width: 420px) {
+        &__card {
+            width: 40%;
+        }
+
+        &__img {
+            max-height: 120px;
+            height: 200px;
+        }
+    }
+
+    @media only screen and (min-width: 700px) {
+        &__card {
+            width: 30%;
+        }
+    }
+
+    @media only screen and (min-width: 900px) {
+        &__card {
+            width: 20%;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        &__card {
+            width: 14%;
+        }
     }
 
     &__block {
         display: flex;
-        align-items: center;
         flex-direction: column;
+        gap: 0.6rem;
+        height: 100%;
         justify-content: center;
-        gap: 0;
     }
 
     &__img {
-        width: 80px;
+        height: auto;
+        max-height: 60px;
+        object-fit: contain;
+        width: auto;
     }
 
     &__p {
         margin: 0;
+        text-align: center;
     }
+
+    &__type-container {
+        justify-content: center;
+        display: flex;
+        gap: 0.4rem;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    align-items: center;
+    background-color: #EF5350;
+    color: #ffffff;
+    display: flex;
+    height: 140px;
+    justify-content: center;
+
+    &__p {
+        text-align: center;
+    }
+}
+
+.chip {
+    border-radius: 1rem;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+.normal {
+    background-color: var(--normal-color);
+    color: var(--font-secondary);
+}
+
+.fighting {
+    background-color: var(--fighting-color);
+    color: var(--font-secondary);
+}
+
+.flying {
+    background-color: var(--flying-color);
+    color: var(--font-secondary);
+}
+
+.poison {
+    background-color: var(--poison-color);
+    color: var(--font-secondary);
+}
+
+.ground {
+    background-color: var(--ground-color);
+    color: var(--font-secondary);
+}
+
+.rock {
+    background-color: var(--rock-color);
+    color: var(--font-secondary);
+}
+
+.bug {
+    background-color: var(--bug-color);
+    color: var(--font-secondary);
+}
+
+.ghost {
+    background-color: var(--ghost-color);
+    color: var(--font-secondary);
+}
+
+.steel {
+    background-color: var(--steel-color);
+    color: var(--font-secondary);
+}
+
+.fire {
+    background-color: var(--fire-color);
+    color: var(--font-secondary);
+}
+
+.water {
+    background-color: var(--water-color);
+    color: var(--font-secondary);
+}
+
+.grass {
+    background-color: var(--grass-color);
+    color: var(--font-secondary);
+}
+
+.electric {
+    background-color: var(--electric-color);
+    color: var(--font-secondary);
+}
+
+.psychic {
+    background-color: var(--psychic-color);
+    color: var(--font-secondary);
+}
+
+.ice {
+    background-color: var(--ice-color);
+    color: var(--font-secondary);
+}
+
+.dragon {
+    background-color: var(--dragon-color);
+    color: var(--font-secondary);
+}
+
+.dark {
+    background-color: var(--dark-color);
+    color: var(--font-secondary);
+}
+
+.fairy {
+    background-color: var(--fairy-color);
+    color: var(--font-secondary);
+}
+
+.unknown {
+    background-color: var(--unknown-color);
+    color: var(--font-secondary);
+}
+
+.shadow {
+    background-color: var(--shadow-color);
+    color: var(--font-secondary);
 }

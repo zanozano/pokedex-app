@@ -29,15 +29,27 @@ async function buildPokemonList() {
 
             const data = await Promise.all(promises);
 
+            function formatPokemonName(name) {
+                const replacedName = name.replace(/[-,]/g, ' ');
+                const words = replacedName.split(' ');
+                const formattedName = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                return formattedName;
+            }
+
             data.forEach((pokemon) => {
                 const { name, sprites, types } = pokemon;
-                const sprite = sprites.other['official-artwork'].front_default;
-                const typesList = types.map(type => type.type.name);
-                list.push({
-                    name,
-                    image: sprite,
-                    types: typesList,
-                });
+                const sprite = sprites.other.showdown.front_default;
+
+                if (sprite) {
+                    const typesList = types.map(type => type.type.name);
+                    list.push({
+                        name: formatPokemonName(name),
+                        image: sprite,
+                        types: typesList,
+                    });
+                } else {
+                    console.log(`La imagen no está disponible para el Pokémon: ${name}`);
+                }
             });
         }
 

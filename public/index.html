@@ -12,32 +12,36 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
 	<link rel="stylesheet" href="styles/style.css" />
-	<title>Pokémon API Game</title>
+	<title>Pokédex App</title>
 </head>
 
 <body>
 	<header class="header">
-		<h2 class="header__h2">Galería de pokemones</h2>
+		<h2 class="header__h2">Pokédex</h2>
 
 		<form id="form" class="header__form">
-			<label class="header__label" for="filter">Type</label>
 			<div class="header__container-input">
-				<input class="form-control header__input" type="text" id="filter" name="filter">
+				<input class="form-control header__input" type="text" id="filter" name="filter"
+					placeholder="Enter a name">
 				<button class="btn btn-primary" type="submit">Filtrar</button>
 			</div>
 		</form>
 	</header>
 
-	<div class="container my-5">
+	<div class="main-container">
 		<div id="pokemon" class="section">
 			<div class="spinner-border m-auto text-info" id="spinner" role="status"></div>
 		</div>
 		<!-- pagination -->
-		<nav class="mt-5" aria-label="Page navigation example">
+		<nav class="mt-5" aria-label="Page navigation">
 			<ul class="pagination" id="pagination">
 			</ul>
 		</nav>
 	</div>
+
+	<footer class="footer">
+		<p class="footer__p">Designed by Cristobal Manzano</p>
+	</footer>
 
 	<script src="js/renderPokemon.js"></script>
 </body>
