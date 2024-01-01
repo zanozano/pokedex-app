@@ -1,10 +1,10 @@
-# Pokédex App
+# PokeFinder App
 
 ![Pokémon Logo](./public/images/favicon.svg)
 
 ## Description
 
-Welcome to the Pokémon API Game, a project built using Node.js that serves as a Pokédex API. This application allows you to retrieve information about various Pokémon species by interacting with a Pokémon API. It provides a simple and convenient way to access details about different Pokémon. Clash with iconic Pokémon via our API-powered backend for separate responses. Unleash the gaming fun and catch 'em all with ease. Gotta code 'em fast!
+Welcome to the PokeFinder App, a project built using Node.js that serves as a Pokédex API. This application allows you to retrieve information about various Pokémon species by interacting with a Pokémon API. It provides a simple and convenient way to access details about different Pokémon. Clash with iconic Pokémon via our API-powered backend for separate responses. Unleash the gaming fun and catch 'em all with ease. Gotta code 'em fast!
 
 ## Key Features and Technologies
 
@@ -14,7 +14,7 @@ Welcome to the Pokémon API Game, a project built using Node.js that serves as a
 
 ## Table of Contents
 
-- [Pokédex App](#pokédex-app)
+- [PokeFinder App](#pokefinder-app)
   - [Description](#description)
   - [Key Features and Technologies](#key-features-and-technologies)
   - [Table of Contents](#table-of-contents)
@@ -31,7 +31,7 @@ Welcome to the Pokémon API Game, a project built using Node.js that serves as a
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/zanozano/pokedex-app.git
+   git clone https://github.com/zanozano/pokefinder-app.git
    ```
 
 2. Install dependencies:
@@ -83,8 +83,8 @@ This project is licensed under the ISC License.
 
 ## Issues
 
-Report any issues or bugs on the [Issues page](https://github.com/zanozano/pokedex-app/issues).
+Report any issues or bugs on the [Issues page](https://github.com/zanozano/pokefinder-app/issues).
 
 ## Live Example
 
-Explore the live example of the Pokémon API Game at [GitHub Pages](https://zanozano.github.io/pokedex-app/).
+Explore the live example of the Pokémon API Game at [GitHub Pages](https://zanozano.github.io/pokefinder-app/).
