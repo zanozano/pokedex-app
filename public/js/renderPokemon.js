@@ -69,14 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
   function generatePagination(totalPages, currentPage) {
     paginationContainer.innerHTML = '';
 
+    const maxVisiblePages = 4;
+    const halfVisiblePages = Math.floor(maxVisiblePages / 2);
+
+    const createPageLink = (pageNumber) => {
+      const pageLink = document.createElement('li');
+      pageLink.classList.add('page-item');
+      if (pageNumber === currentPage) {
+        pageLink.classList.add('active');
+      }
+      pageLink.innerHTML = `<a class="page-link" href="#">${pageNumber}</a>`;
+      pageLink.addEventListener('click', () => {
+        currentPage = pageNumber;
+        showPokemonList(filteredPokemons, currentPage);
+        generatePagination(totalPages, currentPage);
+      });
+      return pageLink;
+    };
+
+    // Display previous page link
     const previousPageLink = document.createElement('li');
     previousPageLink.classList.add('page-item');
     previousPageLink.innerHTML = `
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    `;
+    <a class="page-link" href="#" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+      <span class="sr-only">Previous</span>
+    </a>
+  `;
     previousPageLink.addEventListener('click', () => {
       if (currentPage > 1) {
         currentPage--;
@@ -84,32 +103,58 @@ document.addEventListener('DOMContentLoaded', () => {
         generatePagination(totalPages, currentPage);
       }
     });
-
     paginationContainer.appendChild(previousPageLink);
 
-    for (let i = 1; i <= totalPages; i++) {
-      const pageLink = document.createElement('li');
-      pageLink.classList.add('page-item');
-      if (i === currentPage) {
-        pageLink.classList.add('active');
+    if (totalPages <= maxVisiblePages) {
+      // Display all pages if total pages are less than or equal to maxVisiblePages
+      for (let i = 1; i <= totalPages; i++) {
+        paginationContainer.appendChild(createPageLink(i));
       }
-      pageLink.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-      pageLink.addEventListener('click', () => {
-        currentPage = i;
-        showPokemonList(filteredPokemons, currentPage);
-        generatePagination(totalPages, currentPage);
-      });
-      paginationContainer.appendChild(pageLink);
+    } else {
+      // Display ellipsis for long lists
+      let startPage = Math.max(currentPage - halfVisiblePages, 1);
+      let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
+
+      if (endPage - startPage < maxVisiblePages - 1) {
+        startPage = Math.max(endPage - maxVisiblePages + 1, 1);
+      }
+
+      if (startPage > 1) {
+        paginationContainer.appendChild(createPageLink(1));
+        if (startPage > 2) {
+          // Display ellipsis if not at the beginning
+          const ellipsis = document.createElement('li');
+          ellipsis.classList.add('page-item');
+          ellipsis.innerHTML = `<span class="page-link">...</span>`;
+          paginationContainer.appendChild(ellipsis);
+        }
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        paginationContainer.appendChild(createPageLink(i));
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          // Display ellipsis if not at the end
+          const ellipsis = document.createElement('li');
+          ellipsis.classList.add('page-item');
+          ellipsis.innerHTML = `<span class="page-link">...</span>`;
+          paginationContainer.appendChild(ellipsis);
+        }
+        paginationContainer.appendChild(createPageLink(totalPages));
+      }
     }
 
+    // Display next page link
     const nextPageLink = document.createElement('li');
     nextPageLink.classList.add('page-item');
     nextPageLink.innerHTML = `
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    `;
+    <a class="page-link" href="#" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+      <span class="sr-only">Next</span>
+    </a>
+  `;
     nextPageLink.addEventListener('click', () => {
       if (currentPage < totalPages) {
         currentPage++;
@@ -117,9 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         generatePagination(totalPages, currentPage);
       }
     });
-
     paginationContainer.appendChild(nextPageLink);
   }
+
 
   fetch('http://localhost:3000/pokemon')
     .then((res) => res.json())

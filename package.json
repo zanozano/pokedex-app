@@ -9,7 +9,7 @@
     "open": "^9.1.0",
     "opn": "^6.0.0"
   },
-  "name": "pokedex-app",
+  "name": "pokefinder-app",
   "version": "3.0.0",
   "description": "This project is a Pokédex API built using Node.js, allowing you to retrieve information about various Pokémon species. It interacts with a Pokémon API to fetch data and provides a simple and convenient way to access details about different Pokémon.",
   "main": "src/app.js",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zanozano/pokedex-app.git"
+    "url": "git+https://github.com/zanozano/pokefinder-app.git"
   },
   "keywords": [
     "pokedex",
@@ -33,9 +33,9 @@
   "author": "Cristobal Manzano",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zanozano/pokedex-app/issues"
+    "url": "https://github.com/zanozano/pokefinder-app/issues"
   },
-  "homepage": "https://github.com/zanozano/pokedex-app#readme",
+  "homepage": "https://github.com/zanozano/pokefinder-app#readme",
   "devDependencies": {
     "sass": "^1.66.1"
   }
