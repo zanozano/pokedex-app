@@ -87,4 +87,4 @@ Report any issues or bugs on the [Issues page](https://github.com/zanozano/pokef
 
 ## Live Example
 
-Explore the live example of the Pokémon API Game at [GitHub Pages](https://zanozano.github.io/pokefinder-app/).
+Explore the live example of the Pokémon API Game at [Live View](https://pokefinder-zanozano.koyeb.app/).
