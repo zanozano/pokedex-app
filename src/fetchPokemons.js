@@ -1,19 +1,31 @@
+// fetchPokemons.js
+
 const axios = require('axios');
 
 async function getAllPokemon(offset, limit) {
-    const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
-    return data.results;
+    try {
+        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
+        return data.results;
+    } catch (error) {
+        console.error('Error in getAllPokemon:', error.message);
+        throw error;
+    }
 }
 
 async function getPokemon(name) {
-    const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    return data;
+    try {
+        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        return data;
+    } catch (error) {
+        console.error(`Error in getPokemon for ${name}:`, error.message);
+        throw error;
+    }
 }
 
 async function buildPokemonList() {
     try {
-        const totalPokemons = 1300;
-        const pokemonsPerRequest = 200;
+        const totalPokemons = 150; // Actualizar según la cantidad de Pokémon que desees
+        const pokemonsPerRequest = 100;
         const requestsNeeded = Math.ceil(totalPokemons / pokemonsPerRequest);
 
         const list = [];
@@ -37,22 +49,27 @@ async function buildPokemonList() {
             }
 
             data.forEach((pokemon) => {
-                const { name, sprites, types, weight, height, stats, id } = pokemon;
-                const sprite = sprites.other.showdown.front_default;
+                try {
+                    const { name, sprites, types, weight, height, stats, id } = pokemon;
+                    const sprite = sprites.other?.showdown?.front_default;
 
-                if (sprite) {
-                    const typesList = types.map(type => type.type.name);
-                    list.push({
-                        name: formatPokemonName(name),
-                        image: sprite,
-                        types: typesList,
-                        weight,
-                        height,
-                        stats,
-                        number: id
-                    });
-                } else {
-                    console.log(`La imagen no está disponible para el Pokémon: ${name}`);
+                    if (sprite) {
+                        const typesList = types.map(type => type.type.name);
+                        list.push({
+                            name: formatPokemonName(name),
+                            image: sprite,
+                            types: typesList,
+                            weight,
+                            height,
+                            stats,
+                            number: id
+                        });
+                    } else {
+                        console.log(`La imagen no está disponible para el Pokémon: ${name}`);
+                    }
+                } catch (error) {
+                    console.error('Error processing Pokemon:', pokemon);
+                    console.error('Original Error:', error);
                 }
             });
         }
@@ -65,11 +82,5 @@ async function buildPokemonList() {
     }
 }
 
-module.exports = new Promise(async (resolve, reject) => {
-    try {
-        const result = await buildPokemonList();
-        resolve(result);
-    } catch (error) {
-        reject(error);
-    }
-});
+// Exportando directamente la función de construcción de la lista
+module.exports = buildPokemonList;

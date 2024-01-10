@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "axios": "^0.23.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
@@ -15,8 +16,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_ENV=production && node src/app.js",
-    "start:dev": "set NODE_ENV=development && node src/app.js",
+    "start": "node src/app.js",
     "scss": "sass --watch public/scss/style.scss:public/styles/style.css"
   },
   "repository": {

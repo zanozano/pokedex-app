@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  fetch('http://localhost:3000/pokemon')
+  fetch('/pokemon')
     .then((res) => res.json())
     .then((pokemons) => {
       filteredPokemons = pokemons;

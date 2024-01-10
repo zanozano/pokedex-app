@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/pokemon",
+      "dest": "/pokemon"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}

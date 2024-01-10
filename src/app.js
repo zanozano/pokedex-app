@@ -2,16 +2,17 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs/promises');
 const dotenv = require('dotenv');
+const cors = require('cors');
 dotenv.config();
 const app = express();
-const fetchPokemonInfoPromise = require('./fetchPokemons');
 
 const env = process.env.NODE_ENV || 'development';
 const port = env === 'production' ? process.env.PORT : 3000;
 
-//!middleware
+app.use(cors());
 app.use(express.static('public'));
-//!middleware
+
+const buildPokemonList = require('./fetchPokemons');
 
 app.get('/', async (req, res) => {
     try {
@@ -25,21 +26,14 @@ app.get('/', async (req, res) => {
 
 app.get('/pokemon', async (req, res) => {
     try {
-        const pokemonList = await fetchPokemonInfoPromise;
+        const pokemonList = await buildPokemonList();
         res.json(pokemonList);
     } catch (error) {
+        console.error('Error fetching Pokémon information:', error);
         res.status(500).json({ error: 'Error fetching Pokémon information' });
     }
 });
 
-fetchPokemonInfoPromise.then(() => {
-    app.listen(port, () => {
-        console.log(`Server listening on port ${port}`);
-    });
-}).catch((error) => {
-    console.error('Error in main process:', error);
-});
-
-app.use((req, res) => {
-    res.status(404).send('404 Not Found');
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
 });
