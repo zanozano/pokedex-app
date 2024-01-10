@@ -1,5 +1,3 @@
-// fetchPokemons.js
-
 const axios = require('axios');
 
 async function getAllPokemon(offset, limit) {
@@ -82,5 +80,4 @@ async function buildPokemonList() {
     }
 }
 
-// Exportando directamente la función de construcción de la lista
 module.exports = buildPokemonList;

@@ -6,8 +6,7 @@ const cors = require('cors');
 dotenv.config();
 const app = express();
 
-const env = process.env.NODE_ENV || 'development';
-const port = env === 'production' ? process.env.PORT : 3000;
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(express.static('public'));
