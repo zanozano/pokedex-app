@@ -22,7 +22,7 @@ async function getPokemon(name) {
 
 async function buildPokemonList() {
     try {
-        const totalPokemons = 150; // Actualizar según la cantidad de Pokémon que desees
+        const totalPokemons = 600;
         const pokemonsPerRequest = 100;
         const requestsNeeded = Math.ceil(totalPokemons / pokemonsPerRequest);
 
