@@ -13,6 +13,41 @@ app.use(express.static('public'));
 
 const buildPokemonList = require('./fetchPokemons');
 
+const pokemonDataFilePath = path.join(__dirname, 'pokemonData.json');
+
+let pokemonList;
+
+async function initializeServer() {
+    try {
+        const data = await fs.readFile(pokemonDataFilePath, 'utf8');
+        pokemonList = JSON.parse(data);
+    } catch (err) {
+        console.log('Error loading Pokemon data from file.');
+        await fetchAndSavePokemonData();
+    }
+}
+
+async function savePokemonData(data) {
+    try {
+        await fs.writeFile(pokemonDataFilePath, JSON.stringify(data, null, 2), 'utf8');
+        console.log('Pokemon data saved to file.');
+    } catch (err) {
+        console.error('Error saving Pokemon data to file:', err.message);
+    }
+}
+
+async function fetchAndSavePokemonData() {
+    try {
+        const newData = await buildPokemonList();
+        pokemonList = newData;
+        await savePokemonData(newData);
+    } catch (error) {
+        console.error('Error fetching and saving Pokémon data:', error.message);
+    }
+}
+
+initializeServer();
+
 app.get('/', async (req, res) => {
     try {
         const html = await fs.readFile(path.join(__dirname, 'public', 'index.html'), 'utf8');
@@ -24,13 +59,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/pokemon', async (req, res) => {
-    try {
-        const pokemonList = await buildPokemonList();
-        res.json(pokemonList);
-    } catch (error) {
-        console.error('Error fetching Pokémon information:', error);
-        res.status(500).json({ error: 'Error fetching Pokémon information' });
-    }
+    res.json(pokemonList);
 });
 
 app.listen(port, () => {

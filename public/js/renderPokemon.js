@@ -7,6 +7,34 @@ document.addEventListener('DOMContentLoaded', () => {
   let pokemonsPerPage = 100;
   let filteredPokemons = [];
 
+  let pokemonCollection = [];
+
+  function renderPokemon() {
+    const pokemonTeamContainer = document.getElementById('pokemon-team');
+    pokemonTeamContainer.innerHTML = '';
+
+    pokemonCollection.forEach((pokemon) => {
+      const pokemonCard = document.createElement('div');
+      pokemonCard.id = `pokemon-${pokemon.id}`;
+      pokemonCard.classList.add('pokemon-card');
+      pokemonCard.innerHTML = `
+            <img src="${pokemon.image}" alt="${pokemon.name} image">
+            <p>${pokemon.name}</p>
+            <button class="remove-pokemon-btn btn btn-danger" data-pokemon-id="${pokemon.id}">Remove</button>
+        `;
+      pokemonTeamContainer.appendChild(pokemonCard);
+
+      const removeButton = pokemonCard.querySelector('.remove-pokemon-btn');
+      removeButton.addEventListener('click', () => removePokemonFromCollection(pokemon.id));
+    });
+  }
+
+  function removePokemonFromCollection(pokemonId) {
+    pokemonCollection = pokemonCollection.filter(p => p.id !== pokemonId);
+    renderPokemonList(pokemonCollection);
+  }
+
+
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -39,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const pokemonsToShow = pokemons.slice(startIndex, endIndex);
 
     function handleClick(pokemon) {
-      console.log(pokemon)
       displaySelectedPokemonInfo(pokemon);
     }
 
@@ -52,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       pokemonCard.innerHTML = `
         <div class="section__block">
+        <img class="section__img--bg" src="../images/pokeball.png" alt="background pokeball" >
           <img class="section__img" src="${pokemon.image}" >
           <p class="section__p">${capitalizeFirstLetter(pokemon.name)}</p>
           <div class="section__type-container">
@@ -87,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return pageLink;
     };
 
-    // Display previous page link
     const previousPageLink = document.createElement('li');
     previousPageLink.classList.add('page-item');
     previousPageLink.innerHTML = `
@@ -106,12 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
     paginationContainer.appendChild(previousPageLink);
 
     if (totalPages <= maxVisiblePages) {
-      // Display all pages if total pages are less than or equal to maxVisiblePages
       for (let i = 1; i <= totalPages; i++) {
         paginationContainer.appendChild(createPageLink(i));
       }
     } else {
-      // Display ellipsis for long lists
       let startPage = Math.max(currentPage - halfVisiblePages, 1);
       let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
 
@@ -122,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (startPage > 1) {
         paginationContainer.appendChild(createPageLink(1));
         if (startPage > 2) {
-          // Display ellipsis if not at the beginning
           const ellipsis = document.createElement('li');
           ellipsis.classList.add('page-item');
           ellipsis.innerHTML = `<span class="page-link">...</span>`;
@@ -136,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (endPage < totalPages) {
         if (endPage < totalPages - 1) {
-          // Display ellipsis if not at the end
           const ellipsis = document.createElement('li');
           ellipsis.classList.add('page-item');
           ellipsis.innerHTML = `<span class="page-link">...</span>`;
@@ -146,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Display next page link
     const nextPageLink = document.createElement('li');
     nextPageLink.classList.add('page-item');
     nextPageLink.innerHTML = `
@@ -180,6 +202,35 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+
+  function addPokemonToCollection(pokemon) {
+    if (typeof pokemon !== 'undefined' && pokemon !== null) {
+      if (pokemonCollection.length < 6) {
+        const uniqueId = generateUniqueId();
+        pokemonCollection.push({
+          id: uniqueId,
+          ...pokemon,
+        });
+        renderPokemon(pokemonCollection);
+      } else {
+        console.warn('Warning: Maximum limit (6) reached. Cannot add more pokemons.');
+      }
+    } else {
+      console.error('Error: Pokemon object is not defined or null.');
+    }
+  }
+
+  function generateUniqueId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+
+
+  function renderPokemonList(pokemonCollection) {
+    const pokemonTeamContainer = document.getElementById('pokemon-team');
+    pokemonTeamContainer.innerHTML = '';
+    pokemonCollection.forEach(pokemon => renderPokemon(pokemon));
+  }
 
   function displaySelectedPokemonInfo(pokemon) {
 
@@ -243,7 +294,15 @@ document.addEventListener('DOMContentLoaded', () => {
           </tr>
         </tbody>
       </table>
+      <div class="add-button">
+        <img class="add-button__img-catch-button" src="../images/pokeball.png" alt="background pokeball catch" >
+        <button id="addPokemonButton" class="btn btn-primary add-button__p">Add Pokemon</button>
+      </div>
   `;
+
+    const addPokemonButton = document.getElementById('addPokemonButton');
+    addPokemonButton.addEventListener('click', () => addPokemonToCollection(pokemon));
   }
+
 
 });

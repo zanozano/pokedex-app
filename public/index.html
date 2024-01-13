@@ -20,13 +20,19 @@
 	<header class="header">
 		<h2 class="header__h2">PokeFinder</h2>
 
-		<form id="form" class="header__form">
-			<div class="header__container-input">
-				<input class="form-control header__input" type="text" id="filter" name="filter"
-					placeholder="Enter a name">
-				<button class="btn btn-primary" type="submit">Search</button>
-			</div>
-		</form>
+		<div class="header-container" id="my-pokemon-list">
+
+			<form id="form" class="header__form">
+				<div class="header__container-input">
+					<input class="form-control header__input" type="text" id="filter" name="filter"
+						placeholder="Enter a name">
+					<button class="btn btn-primary" type="submit">Search</button>
+				</div>
+			</form>
+
+			<div id="pokemon-team" class="pokemon-team"></div>
+		</div>
+
 	</header>
 
 	<div class="main-container">
@@ -44,6 +50,11 @@
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 				<div class="modal-body" id="modalBody">
 				</div>
 			</div>
