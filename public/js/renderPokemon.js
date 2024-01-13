@@ -31,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function removePokemonFromCollection(pokemonId) {
     pokemonCollection = pokemonCollection.filter(p => p.id !== pokemonId);
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `Your Pokémon has been deleted from your team`,
+      showConfirmButton: false,
+      timer: 1500
+    });
     renderPokemonList(pokemonCollection);
   }
 
@@ -212,8 +219,22 @@ document.addEventListener('DOMContentLoaded', () => {
           ...pokemon,
         });
         renderPokemon(pokemonCollection);
+        $('#modalSelected').modal('hide');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Your ${pokemon.name} has been added to your team`,
+          showConfirmButton: false,
+          timer: 1500
+        });
       } else {
-        console.warn('Warning: Maximum limit (6) reached. Cannot add more pokemons.');
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: `You have reached the maximum number of Pokémon in your team`,
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     } else {
       console.error('Error: Pokemon object is not defined or null.');
