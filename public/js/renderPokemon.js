@@ -218,8 +218,13 @@ document.addEventListener('DOMContentLoaded', () => {
           id: uniqueId,
           ...pokemon,
         });
+
         renderPokemon(pokemonCollection);
+
         $('#modalSelected').modal('hide');
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         Swal.fire({
           position: "top-end",
           icon: "success",
