@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const fs = require('fs/promises');
 const dotenv = require('dotenv');
@@ -8,6 +9,7 @@ const app = express();
 
 const port = process.env.PORT;
 
+app.use(compression());
 app.use(cors());
 app.use(express.static('public'));
 

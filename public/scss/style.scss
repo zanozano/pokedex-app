@@ -7,34 +7,38 @@
     --background-secondary: #fff;
     --background-tertiary: #ee6b2f;
     --background-quaternary: #4dad5b;
-    --font-primary: #919191;
+    --font-primary: #717171;
     --font-secondary: #fff;
-    --normal-color: #a8a77a;
-    --fighting-color: #c22e28;
-    --flying-color: #a98ff3;
-    --poison-color: #a33ea1;
-    --ground-color: #e2bf65;
-    --rock-color: #b6a136;
-    --bug-color: #a6b91a;
-    --ghost-color: #735797;
-    --steel-color: #b7b7ce;
-    --fire-color: #ee8130;
-    --water-color: #6390f0;
-    --grass-color: #7ac74c;
-    --electric-color: #f7d02c;
-    --psychic-color: #f95587;
-    --ice-color: #96d9d6;
-    --dragon-color: #6f35fc;
-    --dark-color: #705746;
-    --fairy-color: #d685ad;
-    --unknown-color: #68a090;
-    --shadow-color: #5f6169;
+    --normal-color: #4d4d4d;
+    --fighting-color: #b23c38;
+    --flying-color: #7064aa;
+    --poison-color: #783f78;
+    --ground-color: #b99263;
+    --rock-color: #928868;
+    --bug-color: #6b7541;
+    --ghost-color: #7f6881;
+    --steel-color: #86868f;
+    --fire-color: #a73b3b;
+    --water-color: #576b99;
+    --grass-color: #476533;
+    --electric-color: #b8a366;
+    --psychic-color: #b67b8e;
+    --ice-color: #8fb8b6;
+    --dragon-color: #7a5ca8;
+    --dark-color: #7c7970;
+    --fairy-color: #a77c8f;
+    --unknown-color: #576b63;
+    --shadow-color: #5a5e66;
 }
 
 body {
     color: var(--font-primary);
     font-family: "Flexo-Regular", arial, sans-serif;
     padding-right: 0 !important;
+}
+
+.btn-primary {
+    letter-spacing: 1px;
 }
 
 .header-container {
@@ -183,8 +187,10 @@ body {
         }
 
         &__img {
-            max-height: 120px;
-            height: 200px;
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+            z-index: 100;
         }
     }
 
@@ -217,10 +223,9 @@ body {
     }
 
     &__img {
-        height: auto;
-        max-height: 60px;
-        object-fit: contain;
+        height: 65px;
         width: auto;
+        object-fit: contain;
         z-index: 100;
     }
 
@@ -258,7 +263,7 @@ body {
 
 .footer {
     align-items: center;
-    background-color: #EF5350;
+    background-color: #a93533;
     color: #ffffff;
     display: flex;
     height: 140px;
@@ -311,41 +316,58 @@ body {
 }
 
 .normal {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--normal-color);
     color: var(--font-secondary);
 }
 
 .fighting {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--fighting-color);
     color: var(--font-secondary);
 }
 
 .flying {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--flying-color);
     color: var(--font-secondary);
 }
 
 .poison {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--poison-color);
     color: var(--font-secondary);
 }
 
 .ground {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--ground-color);
     color: var(--font-secondary);
 }
 
 .rock {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--rock-color);
     color: var(--font-secondary);
 }
 
 .bug {
+
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--bug-color);
     color: var(--font-secondary);
 }
 
 .ghost {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--ghost-color);
     color: var(--font-secondary);
 }
@@ -356,56 +378,78 @@ body {
 }
 
 .fire {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--fire-color);
     color: var(--font-secondary);
 }
 
 .water {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--water-color);
     color: var(--font-secondary);
 }
 
 .grass {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--grass-color);
     color: var(--font-secondary);
 }
 
 .electric {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--electric-color);
     color: var(--font-secondary);
 }
 
 .psychic {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--psychic-color);
     color: var(--font-secondary);
 }
 
 .ice {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--ice-color);
     color: var(--font-secondary);
 }
 
 .dragon {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--dragon-color);
     color: var(--font-secondary);
 }
 
 .dark {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--dark-color);
     color: var(--font-secondary);
 }
 
 .fairy {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--fairy-color);
     color: var(--font-secondary);
 }
 
 .unknown {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--unknown-color);
     color: var(--font-secondary);
 }
 
 .shadow {
+    font-weight: 600;
+    letter-spacing: 1px;
     background-color: var(--shadow-color);
     color: var(--font-secondary);
 }
@@ -429,4 +473,21 @@ body {
         text-align: center;
         margin: 0;
     }
+}
+
+.page-link {
+    color: #000000;
+    font-weight: 500;
+}
+
+
+.btn-primary {
+    background-color: #0d5fbc;
+    border-color: #0d5fbc;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #2c5a9c;
+    border-color: #2c5a9c;
 }

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let InputFilter = document.getElementById('filter');
   let paginationContainer = document.getElementById('pagination');
   let currentPage = 1;
-  let pokemonsPerPage = 100;
+  let pokemonsPerPage = 24;
   let filteredPokemons = [];
 
   let pokemonCollection = [];
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pokemonCard.innerHTML = `
         <div class="section__block">
         <img class="section__img--bg" src="../images/pokeball.png" alt="background pokeball" >
-          <img class="section__img" src="${pokemon.image}" >
+          <img class="section__img" width="300px" height="auto" src="${pokemon.image}" alt="${pokemon.name} image">
           <p class="section__p">${capitalizeFirstLetter(pokemon.name)}</p>
           <div class="section__type-container">
             ${createTypeChips(pokemon.types)}
